@@ -10,7 +10,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import { useTheme } from '@/theme';
-import { Text } from '@/shared/components/atoms';
+import { IconByVariant } from '@/shared/components/atoms';
 const AnimatedLogo = () => {
   const { gutters, layout } = useTheme();
   const progress = useSharedValue(0);
@@ -24,13 +24,9 @@ const AnimatedLogo = () => {
     )
   );
 
-  const rotation = useDerivedValue(() =>
-    withTiming(0, { duration: 1250, easing: Easing.out(Easing.ease) })
-  );
+  const rotation = useDerivedValue(() => withTiming(0, { duration: 1250, easing: Easing.out(Easing.ease) }));
 
-  const opacity = useDerivedValue(() =>
-    withTiming(1, { duration: 1000, easing: Easing.in(Easing.ease) })
-  );
+  const opacity = useDerivedValue(() => withTiming(1, { duration: 1000, easing: Easing.in(Easing.ease) }));
 
   // Start the animation
   useEffect(() => {
@@ -39,25 +35,13 @@ const AnimatedLogo = () => {
 
   // Animated styles
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [
-      { scale: scale.value },
-      { rotate: `${rotation.value * 30}deg` },
-    ],
+    transform: [{ scale: scale.value }, { rotate: `${rotation.value * 30}deg` }],
     opacity: opacity.value,
-    shadowRadius: 25,
-    shadowOpacity: 1,
   }));
   return (
-    <View
-      style={[
-        layout.flex_1,
-        layout.justifyCenter,
-        layout.itemsCenter,
-        gutters.marginBottom_80,
-      ]}
-    >
+    <View style={[layout.flex_1, layout.justifyCenter, layout.itemsCenter, gutters.marginBottom_80]}>
       <Animated.View style={animatedStyle}>
-        <Text variant="heading1">ShopEase</Text>
+        <IconByVariant path="shop" />
       </Animated.View>
     </View>
   );

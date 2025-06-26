@@ -24,7 +24,7 @@ const colorsLight = {
   info: '#00B8D9',
   placeholder: '#FFFFFF',
   placeholderBg: '#DDDDDE',
-  primary: '#4E4DD7',
+  primary: '#0096C7',
   purple: '#8A2BE2',
   skeleton: '#A1A1A1',
   success: '#22C55E',
@@ -52,7 +52,7 @@ const colorsDark = {
   info: '#00B8D9',
   placeholder: '#000000',
   placeholderBg: '#2C2D2F',
-  primary: '#4E4DD7',
+  primary: '#0096C7',
   purple: '#8A2BE2',
   skeleton: '#303030',
   success: '#22C55E',
@@ -63,9 +63,7 @@ const colorsDark = {
   black: '#000000',
 } as const;
 
-const sizes = [
-  0, 2, 3, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 32, 40, 48, 80,
-] as const;
+const sizes = [0, 2, 3, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 32, 40, 48, 80] as const;
 
 export const config = {
   backgrounds: colorsLight,
