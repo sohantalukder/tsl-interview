@@ -3,16 +3,14 @@ import React from 'react'
 import layout from '@/theme/layout'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { ThemeProvider } from '@/theme';
-import { View, Text } from 'react-native';
+import Navigation from '@/navigation';
 
 const MainIndex = () => {
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={layout.flex_1}>  
           <ThemeProvider>
-            <View style={layout.flex_1}>
-              <Text>MainIndex</Text>
-            </View>
+            <Navigation />
           </ThemeProvider>
       </GestureHandlerRootView> 
     </SafeAreaProvider>
