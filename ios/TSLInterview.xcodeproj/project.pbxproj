@@ -9,30 +9,30 @@
 /* Begin PBXBuildFile section */
 		0C80B921A6F3F58F76C31292 /* libPods-TSLInterview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-TSLInterview.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		669B9A2D0AA848C4B599963D /* SF-Pro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F3E97C6CC1514241A29A5D3A /* SF-Pro-Bold.otf */; };
+		724386709A5E48B2BB6D6675 /* SF-Pro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 11269511E6B9462EB742C619 /* SF-Pro-Semibold.otf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		E5D63AF0A058196BA6F5E5DA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
-		669B9A2D0AA848C4B599963D /* SF-Pro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F3E97C6CC1514241A29A5D3A /* SF-Pro-Bold.otf */; };
-		B1C0ABB133204342BEB68A91 /* SF-Pro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3E541CE5C300425084072FBA /* SF-Pro-Medium.otf */; };
 		8D2978C389364AEC9A59F7E3 /* SF-Pro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E9AD2F31D45B081A8683F /* SF-Pro-Regular.otf */; };
-		724386709A5E48B2BB6D6675 /* SF-Pro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 11269511E6B9462EB742C619 /* SF-Pro-Semibold.otf */; };
+		B1C0ABB133204342BEB68A91 /* SF-Pro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3E541CE5C300425084072FBA /* SF-Pro-Medium.otf */; };
+		E5D63AF0A058196BA6F5E5DA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11269511E6B9462EB742C619 /* SF-Pro-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Semibold.otf"; path = "../assets/fonts/SF-Pro-Semibold.otf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* TSLInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSLInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TSLInterview/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TSLInterview/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = TSLInterview/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1A4E9AD2F31D45B081A8683F /* SF-Pro-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Regular.otf"; path = "../assets/fonts/SF-Pro-Regular.otf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-TSLInterview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSLInterview.debug.xcconfig"; path = "Target Support Files/Pods-TSLInterview/Pods-TSLInterview.debug.xcconfig"; sourceTree = "<group>"; };
+		3E541CE5C300425084072FBA /* SF-Pro-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Medium.otf"; path = "../assets/fonts/SF-Pro-Medium.otf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-TSLInterview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSLInterview.release.xcconfig"; path = "Target Support Files/Pods-TSLInterview/Pods-TSLInterview.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-TSLInterview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TSLInterview.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TSLInterview/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TSLInterview/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F3E97C6CC1514241A29A5D3A /* SF-Pro-Bold.otf */ = {isa = PBXFileReference; name = "SF-Pro-Bold.otf"; path = "../assets/fonts/SF-Pro-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3E541CE5C300425084072FBA /* SF-Pro-Medium.otf */ = {isa = PBXFileReference; name = "SF-Pro-Medium.otf"; path = "../assets/fonts/SF-Pro-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1A4E9AD2F31D45B081A8683F /* SF-Pro-Regular.otf */ = {isa = PBXFileReference; name = "SF-Pro-Regular.otf"; path = "../assets/fonts/SF-Pro-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		11269511E6B9462EB742C619 /* SF-Pro-Semibold.otf */ = {isa = PBXFileReference; name = "SF-Pro-Semibold.otf"; path = "../assets/fonts/SF-Pro-Semibold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F3E97C6CC1514241A29A5D3A /* SF-Pro-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Bold.otf"; path = "../assets/fonts/SF-Pro-Bold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 			sourceTree = "<group>";
 		};
 		DEBDEB5392D34D989D1DC325 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				F3E97C6CC1514241A29A5D3A /* SF-Pro-Bold.otf */,
 				3E541CE5C300425084072FBA /* SF-Pro-Medium.otf */,
@@ -116,8 +116,8 @@
 				11269511E6B9462EB742C619 /* SF-Pro-Semibold.otf */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
 			path = "";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
