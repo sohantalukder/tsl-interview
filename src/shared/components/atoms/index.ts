@@ -8,3 +8,4 @@ export { default as Switch } from './switch/Switch';
 export { default as Button } from './buttons/Button';
 export { default as Loader } from './loader/Loader';
 export { default as IconButton } from './buttons/IconButton';
+export { default as StatusBar } from './status-bar/StatusBar';
