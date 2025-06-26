@@ -32,7 +32,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -49,5 +49,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-Pro-Bold.otf</string>
+		<string>SF-Pro-Medium.otf</string>
+		<string>SF-Pro-Regular.otf</string>
+		<string>SF-Pro-Semibold.otf</string>
+	</array>
 </dict>
 </plist>
