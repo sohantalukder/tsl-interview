@@ -1,12 +1,19 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { Loader } from '@/shared/components/atoms';
+import { SafeScreen } from '@/shared/components/templates';
 
+import { useTheme } from '@/theme';
+
+import AnimatedLogo from './components/AnimatedLogo';
+import useSplash from './hooks/useSplash';
 const SplashIndex = () => {
+  const { gutters } = useTheme();
+  const { isLoading } = useSplash();
   return (
-    <View>
-      <Text>SplashIndex</Text>
-    </View>
-  )
-}
+    <SafeScreen>
+      <AnimatedLogo />
+      {isLoading ? <Loader style={gutters.marginBottom_40} /> : null}
+    </SafeScreen>
+  );
+};
 
 export default SplashIndex;
