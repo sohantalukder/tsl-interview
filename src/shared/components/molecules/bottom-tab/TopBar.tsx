@@ -32,7 +32,7 @@ export const TabBar: React.FC<TabBarProps> = React.memo(
         inactive: inactiveColor ?? colors.gray2,
         badge: badgeColor ?? colors.error,
         badgeText: badgeTextColor ?? colors.white,
-        background: backgroundColor ?? backgrounds.primary.backgroundColor,
+        background: backgroundColor ?? backgrounds.background.backgroundColor,
       }),
       [
         activeColor,
@@ -44,7 +44,7 @@ export const TabBar: React.FC<TabBarProps> = React.memo(
         badgeTextColor,
         colors.white,
         backgroundColor,
-        backgrounds.primary,
+        backgrounds.background,
       ]
     );
 
