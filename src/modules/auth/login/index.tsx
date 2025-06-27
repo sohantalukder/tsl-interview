@@ -6,9 +6,11 @@ import { PasswordInput } from '@/shared/components/molecules';
 import RememberMe from './components/RememberMe';
 import layout from '@/theme/layout';
 import { useTheme } from '@/theme';
+import useLogin from './hooks/useLogin';
 
 const LoginIndex = () => {
   const { gutters } = useTheme();
+  const { isLoading, handleLogin } = useLogin();
   return (
     <SafeScreen>
       <ScrollView
@@ -41,7 +43,8 @@ const LoginIndex = () => {
         <RememberMe callback={() => {}} />
         <Button
           text="Login"
-          onPress={() => {}}
+          onPress={handleLogin}
+          isLoading={isLoading}
         />
       </ScrollView>
     </SafeScreen>
