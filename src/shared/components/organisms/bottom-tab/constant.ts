@@ -2,22 +2,24 @@ import FavoritesIndex from '@/modules/favorites';
 import HomeIndex from '@/modules/home';
 import MapViewIndex from '@/modules/map-view';
 import { TabItem } from '../../molecules/bottom-tab/type';
+import routes from '@/navigation/routes';
+
 const tabs: TabItem[] = [
   {
-    id: 'home',
+    id: routes.home,
     icon: 'home',
     activeIcon: 'homeFill',
     component: HomeIndex,
   },
   {
-    id: 'favorite',
+    id: routes.favorites,
     icon: 'favorite',
     activeIcon: 'favoriteFill',
     badge: 10,
     component: FavoritesIndex,
   },
   {
-    id: 'map',
+    id: routes.mapView,
     icon: 'map',
     activeIcon: 'mapFill',
     component: MapViewIndex,

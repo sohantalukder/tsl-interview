@@ -90,4 +90,13 @@ export default {
   z10: {
     zIndex: 10,
   },
+  top_10: {
+    top: 10,
+  },
+  left_10: {
+    left: 10,
+  },
+  right_10: {
+    right: 10,
+  },
 } as const satisfies Record<string, ViewStyle>;

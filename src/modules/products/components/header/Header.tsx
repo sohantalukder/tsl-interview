@@ -12,7 +12,7 @@ const Header = () => {
       <Pressable style={[layout.row, layout.itemsCenter, gutters.gap_10]}>
         <Image
           source={{ uri: '' }}
-          style={{ width: rs(40), height: rs(40) }}
+          style={{ width: rs(45), height: rs(45) }}
           resizeMode="contain"
           borderRadius={100}
         />

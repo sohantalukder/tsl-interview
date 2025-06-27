@@ -3,12 +3,7 @@ import { BottomTabNavigator } from '../../molecules';
 import tabs from './constant';
 
 const BottomTab = () => {
-  return (
-    <BottomTabNavigator
-      tabs={tabs}
-      initialTab={tabs[0].id}
-    />
-  );
+  return <BottomTabNavigator tabs={tabs} />;
 };
 
 export default BottomTab;
