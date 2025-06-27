@@ -10,7 +10,10 @@ const useLogin = () => {
     setIsLoading(true);
     try {
       setTimeout(() => {
-        navigation.navigate(routes.home);
+        navigation.reset({
+          index: 0,
+          routes: [{ name: routes.bottomTab }],
+        });
         setIsLoading(false);
       }, 2000);
     } catch (error) {

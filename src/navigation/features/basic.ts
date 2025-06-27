@@ -7,6 +7,8 @@ import MapViewIndex from '@/modules/map-view';
 import FavoritesIndex from '@/modules/favorites';
 import ProductDetail from '@/modules/products/features/product-detail';
 import ProfileIndex from '@/modules/profile';
+import BottomTab from '@/shared/components/organisms/bottom-tab/BottomTab';
+
 const basicRoutes: RouteProps[] = [
   { name: routes.splash, component: SplashIndex },
   { name: routes.login, component: LoginIndex },
@@ -29,6 +31,10 @@ const basicRoutes: RouteProps[] = [
   {
     name: routes.profile,
     component: ProfileIndex,
+  },
+  {
+    name: routes.bottomTab,
+    component: BottomTab,
   },
 ];
 

@@ -1,13 +1,10 @@
 import routes from '@/navigation/routes';
-import type {
-  StackNavigationOptions,
-  StackScreenProps,
-  StackNavigationProp,
-} from '@react-navigation/stack';
+import type { StackNavigationOptions, StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
 
-export type RootScreenProps<
-  S extends keyof RootStackParamList = keyof RootStackParamList
-> = StackScreenProps<RootStackParamList, S>;
+export type RootScreenProps<S extends keyof RootStackParamList = keyof RootStackParamList> = StackScreenProps<
+  RootStackParamList,
+  S
+>;
 
 export type RootStackParamList = {
   [routes.splash]: undefined;
@@ -15,8 +12,9 @@ export type RootStackParamList = {
   [routes.home]: undefined;
   [routes.favorites]: undefined;
   [routes.mapView]: undefined;
-  [routes.productDetail]: { id: string, title: string };
+  [routes.productDetail]: { id: string; title: string };
   [routes.profile]: undefined;
+  [routes.bottomTab]: undefined;
 };
 
 export type RouteProps = {

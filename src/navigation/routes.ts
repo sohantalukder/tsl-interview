@@ -11,6 +11,7 @@ enum routes {
   favorites = 'FAVORITES',
   mapView = 'MAP_VIEW',
   productDetail = 'PRODUCT_DETAIL',
+  bottomTab = 'BOTTOM_TAB',
 }
 
 export default routes;
