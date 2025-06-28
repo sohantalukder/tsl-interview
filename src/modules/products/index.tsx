@@ -1,94 +1,26 @@
-import React, { useCallback } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { FlashList } from '@shopify/flash-list';
-import { ProductCard } from './components/product-card/ProductCard';
-import rs from '@/shared/utilities/responsiveSize';
+import React from 'react';
+import { View } from 'react-native';
 import Header from './components/header/Header';
-import { EmptyContent } from '@/shared/components/molecules';
 import layout from '@/theme/layout';
 import { useTheme } from '@/theme';
 import useProducts from './hooks/useProducts';
-import { IProduct } from './types/product.type';
+import ProductsList from '@/shared/components/organisms/product-list/ProductList';
 
-interface IProductRow {
-  id: string;
-  leftProduct: IProduct | null;
-  rightProduct: IProduct | null;
-}
-
-const Separator = () => <View style={{ height: rs(16) }} />;
-
-export const ProductsScreen = () => {
+const ProductsScreen = () => {
   const { gutters } = useTheme();
-  const { loading, refreshing, productRows, handleRefresh, handleProductPress } = useProducts();
-
-  // Optimized render function without map - pre-structured data
-  const renderProductRow = useCallback(
-    ({ item }: { item: IProductRow }) => (
-      <View style={styles.productRow}>
-        <View style={styles.productContainer}>
-          {item.leftProduct ? (
-            <ProductCard
-              product={item.leftProduct}
-              onPress={handleProductPress}
-            />
-          ) : (
-            <View style={styles.emptyCard} />
-          )}
-        </View>
-        <View style={styles.productContainer}>
-          {item.rightProduct ? (
-            <ProductCard
-              product={item.rightProduct}
-              onPress={handleProductPress}
-            />
-          ) : (
-            <View style={styles.emptyCard} />
-          )}
-        </View>
-      </View>
-    ),
-    [handleProductPress]
-  );
-
-  const keyExtractor = useCallback((item: IProductRow) => item.id, []);
+  const { loading, refreshing, productRows, handleRefresh } = useProducts();
 
   return (
     <View style={[layout.flex_1, gutters.gap_16]}>
       <Header />
-      <FlashList
-        data={productRows}
-        renderItem={renderProductRow}
-        keyExtractor={keyExtractor}
-        estimatedItemSize={320}
-        ListEmptyComponent={
-          <EmptyContent
-            isLoading={loading}
-            title="No products found!"
-            description="Please try again later."
-          />
-        }
-        onRefresh={handleRefresh}
+      <ProductsList
+        products={productRows}
+        loading={loading}
         refreshing={refreshing}
-        ItemSeparatorComponent={Separator}
-        showsVerticalScrollIndicator={false}
+        handleRefresh={handleRefresh}
       />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  productRow: {
-    flexDirection: 'row',
-  },
-  productContainer: {
-    flex: 1,
-    padding: rs(8),
-  },
-  emptyCard: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: rs(16),
-  },
-});
+export default ProductsScreen;

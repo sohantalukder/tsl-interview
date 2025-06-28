@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeScreen } from '@/shared/components/templates';
 import { useTheme } from '@/theme';
-import { ProductsScreen } from '../products';
+import ProductsScreen from '../products';
 const HomeIndex = () => {
   const { gutters } = useTheme();
   return (

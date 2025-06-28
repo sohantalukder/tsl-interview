@@ -12,7 +12,7 @@ export type RootStackParamList = {
   [routes.home]: undefined;
   [routes.favorites]: undefined;
   [routes.mapView]: undefined;
-  [routes.productDetail]: { id: string; title: string };
+  [routes.productDetail]: { id: string };
   [routes.profile]: undefined;
   [routes.bottomTab]: undefined;
 };

@@ -5,7 +5,7 @@ import SplashIndex from '@/modules/splash';
 import HomeIndex from '@/modules/home';
 import MapViewIndex from '@/modules/map-view';
 import FavoritesIndex from '@/modules/favorites';
-import { ProductDetailsScreen } from '@/modules/products/features/product-detail';
+import ProductDetailsScreen from '@/modules/products/features/product-detail';
 import ProfileIndex from '@/modules/profile';
 import BottomTab from '@/shared/components/organisms/bottom-tab/BottomTab';
 

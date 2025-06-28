@@ -43,3 +43,9 @@ export interface IProduct {
   thumbnail: string;
   images: string[];
 }
+
+export interface IProductRow {
+  id: string;
+  leftProduct: IProduct | null;
+  rightProduct: IProduct | null;
+}

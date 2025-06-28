@@ -1,12 +1,32 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View } from 'react-native';
+import { FavoritesHeader } from './components/FavoritesHeader';
+import { useFavorites } from './hooks/useFavorites';
+import layout from '@/theme/layout';
+import { useTheme } from '@/theme';
+import { SafeScreen } from '@/shared/components/templates';
+import ProductsList from '@/shared/components/organisms/product-list/ProductList';
 
-const FavoritesIndex = () => {
+const FavoritesScreen = () => {
+  const { gutters } = useTheme();
+  const { favoritesCount, favoriteRows, handleClearAll } = useFavorites();
+
   return (
-    <View>
-      <Text>FavoritesIndex</Text>
-    </View>
-  )
-}
+    <SafeScreen>
+      <FavoritesHeader
+        favoritesCount={favoritesCount}
+        onClearAll={handleClearAll}
+      />
+      <View style={[layout.flex_1, gutters.paddingHorizontal_8]}>
+        <ProductsList
+          products={favoriteRows}
+          loading={false}
+          refreshing={false}
+          handleRefresh={() => {}}
+        />
+      </View>
+    </SafeScreen>
+  );
+};
 
-export default FavoritesIndex;
+export default FavoritesScreen;

@@ -20,7 +20,7 @@ import useProductDetail from './hooks/useProductDetail';
 
 type ProductDetailsScreenProps = RootScreenProps<typeof routes.productDetail>;
 
-export const ProductDetailsScreen: React.FC<ProductDetailsScreenProps> = ({ route }) => {
+const ProductDetailsScreen: React.FC<ProductDetailsScreenProps> = ({ route }) => {
   const { id } = route.params;
   const { gutters } = useTheme();
 
@@ -88,3 +88,5 @@ export const ProductDetailsScreen: React.FC<ProductDetailsScreenProps> = ({ rout
     </SafeScreen>
   );
 };
+
+export default ProductDetailsScreen;

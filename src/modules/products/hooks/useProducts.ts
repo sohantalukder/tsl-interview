@@ -1,10 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { IProduct } from '../types/product.type';
 import { IResponse } from '@/types/response';
-import { NavigationProp } from '@/navigation/type';
-import routes from '@/navigation/routes';
 
 interface IProductRow {
   id: string;
@@ -19,11 +16,9 @@ interface UseProductsReturn {
   productRows: IProductRow[];
   fetchProducts: () => Promise<void>;
   handleRefresh: () => void;
-  handleProductPress: (product: IProduct) => void;
 }
 
 const useProducts = (): UseProductsReturn => {
-  const navigation = useNavigation<NavigationProp>();
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
@@ -52,16 +47,6 @@ const useProducts = (): UseProductsReturn => {
     fetchProducts();
   }, [fetchProducts]);
 
-  const handleProductPress = useCallback(
-    (product: IProduct) => {
-      navigation.navigate(routes.productDetail, {
-        id: product.id.toString(),
-        title: product.title,
-      });
-    },
-    [navigation]
-  );
-
   // Convert products into structured rows - more efficient than inline mapping
   const productRows = useMemo(() => {
     const rows: IProductRow[] = [];
@@ -86,7 +71,6 @@ const useProducts = (): UseProductsReturn => {
     productRows,
     fetchProducts,
     handleRefresh,
-    handleProductPress,
   };
 };
 
