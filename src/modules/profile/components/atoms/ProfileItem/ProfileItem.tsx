@@ -6,11 +6,10 @@ import { useTheme } from '@/theme';
 interface Props {
   label: string;
   value: string | number;
-  color?: string;
   style?: StyleProp<ViewStyle>;
 }
 
-const ProfileItem: React.FC<Props> = ({ label, value, color, style }) => {
+const ProfileItem: React.FC<Props> = ({ label, value, style }) => {
   const { gutters, layout } = useTheme();
 
   return (
@@ -25,9 +24,7 @@ const ProfileItem: React.FC<Props> = ({ label, value, color, style }) => {
         </Text>
         <Text
           variant="body1"
-          color="default"
           weight="medium"
-          style={{ color: color }}
         >
           {value}
         </Text>

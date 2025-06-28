@@ -1,7 +1,14 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Alert } from 'react-native';
+import { useAppDispatch, useAppSelector } from '@/state/hooks';
+import { loadProducts, loadMoreProducts } from '@/state/thunks/productsThunk';
+import {
+  selectProducts,
+  selectProductsLoading,
+  selectHasMore,
+  selectProductsLoadingMore,
+} from '@/state/slices/productsSlice';
 import { IProduct } from '../types/product.type';
-import { IResponse } from '@/types/response';
 
 interface IProductRow {
   id: string;
@@ -16,35 +23,52 @@ interface UseProductsReturn {
   productRows: IProductRow[];
   fetchProducts: () => Promise<void>;
   handleRefresh: () => void;
+  loadMore: () => Promise<void>;
+  hasMore: boolean;
+  isLoadingMore: boolean;
 }
 
 const useProducts = (): UseProductsReturn => {
-  const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+  const dispatch = useAppDispatch();
+
+  // Redux state
+  const reduxProducts = useAppSelector(selectProducts);
+  const loading = useAppSelector(selectProductsLoading);
+  const hasMore = useAppSelector(selectHasMore);
+  const isLoadingMore = useAppSelector(selectProductsLoadingMore);
+
+  // Convert Redux products to your existing format
+  const filteredProducts = useMemo(() => {
+    return reduxProducts.map((product) => ({
+      ...product,
+      // Ensure compatibility with your existing IProduct interface
+    })) as IProduct[];
+  }, [reduxProducts]);
 
   const fetchProducts = useCallback(async () => {
     try {
-      const response = await fetch('https://dummyjson.com/products?limit=50');
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data: IResponse<IProduct> = await response.json();
-      setFilteredProducts(data.products);
+      await dispatch(loadProducts({ limit: 50 })).unwrap();
     } catch (error) {
       Alert.alert('Error', 'Failed to fetch products. Please try again.');
       console.error('Error fetching products:', error);
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
     }
-  }, []);
+  }, [dispatch]);
+
+  const loadMore = useCallback(async () => {
+    if (!hasMore || isLoadingMore) return;
+
+    try {
+      await dispatch(loadMoreProducts({ limit: 20 })).unwrap();
+    } catch (error) {
+      Alert.alert('Error', 'Failed to load more products. Please try again.');
+      console.error('Error loading more products:', error);
+    }
+  }, [dispatch, hasMore, isLoadingMore]);
 
   const handleRefresh = useCallback(() => {
     setRefreshing(true);
-    fetchProducts();
+    fetchProducts().finally(() => setRefreshing(false));
   }, [fetchProducts]);
 
   // Convert products into structured rows - more efficient than inline mapping
@@ -61,8 +85,10 @@ const useProducts = (): UseProductsReturn => {
   }, [filteredProducts]);
 
   useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+    if (filteredProducts.length === 0 && !loading) {
+      fetchProducts();
+    }
+  }, [fetchProducts, filteredProducts.length, loading]);
 
   return {
     loading,
@@ -71,6 +97,9 @@ const useProducts = (): UseProductsReturn => {
     productRows,
     fetchProducts,
     handleRefresh,
+    loadMore,
+    hasMore,
+    isLoadingMore,
   };
 };
 

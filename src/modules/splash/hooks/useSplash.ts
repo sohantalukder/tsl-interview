@@ -1,25 +1,32 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { InteractionManager } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import routes from '@/navigation/routes';
-import { NavigationProp } from '@/navigation/type';
+import { NavigationProp, RootStackParamList } from '@/navigation/type';
+import { useAppSelector, useAppDispatch } from '@/state/hooks';
+import { selectAuthLoading, selectIsAuthenticated, selectAuthError } from '@/state/slices/authSlice';
+import { fetchUserProfile } from '@/state/thunks/authThunk';
+import localStore from '@/services/storage/localStore.service';
+
+const SPLASH_DELAY = 2000;
 
 const useSplash = () => {
   const navigation = useNavigation<NavigationProp>();
-  const [isLoading, _setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+
   const hasNavigated = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const isAuthLoading = useAppSelector(selectAuthLoading);
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const authError = useAppSelector(selectAuthError);
 
   const navigate = useCallback(
-    () => {
+    (routeName: keyof RootStackParamList) => {
       if (hasNavigated.current) return;
 
       hasNavigated.current = true;
-
-      // Determine route based on user data
-      let routeName = routes.login;
-     
+      setIsLoading(false);
 
       navigation.reset({
         index: 0,
@@ -29,29 +36,64 @@ const useSplash = () => {
     [navigation]
   );
 
+  const navigateWithDelay = useCallback(
+    (routeName: keyof RootStackParamList) => {
+      timeoutRef.current = setTimeout(() => {
+        navigate(routeName);
+      }, SPLASH_DELAY);
+    },
+    [navigate]
+  );
+
   const checkAuthAndNavigate = useCallback(async () => {
-        // Not logged in, navigate to login after minimum splash time
-        timeoutRef.current = setTimeout(() => {
-          navigate();
-        }, 2000);
-  }, [navigate]);
+    if (isAuthLoading || hasNavigated.current) return;
+
+    const apiToken = localStore.getApiToken();
+
+    // Handle auth error case
+    if (authError) {
+      localStore.clearApiToken();
+      navigateWithDelay(routes.login);
+      return;
+    }
+
+    // No token case
+    if (!apiToken) {
+      navigateWithDelay(routes.login);
+      return;
+    }
+
+    // Already authenticated case
+    if (isAuthenticated) {
+      navigateWithDelay(routes.home);
+      return;
+    }
+
+    // Validate token case
+    try {
+      await dispatch(fetchUserProfile()).unwrap();
+      navigateWithDelay(routes.home);
+    } catch (error) {
+      console.warn('Token validation failed:', error);
+      localStore.clearApiToken();
+      navigateWithDelay(routes.login);
+    }
+  }, [dispatch, navigateWithDelay, isAuthLoading, isAuthenticated, authError]);
 
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
-      checkAuthAndNavigate();
-    });
+    checkAuthAndNavigate();
 
-    // Cleanup function
+    // Cleanup timeout on unmount
     return () => {
-      task.cancel();
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
       }
     };
   }, [checkAuthAndNavigate]);
 
   return {
-    isLoading: isLoading ,
+    isLoading: isLoading || isAuthLoading,
   };
 };
 

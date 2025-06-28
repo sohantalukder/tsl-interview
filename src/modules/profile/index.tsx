@@ -13,6 +13,7 @@ import ProfileSettings from './components/molecules/ProfileSettings/ProfileSetti
 // Hook
 import useProfile from './hooks/useProfile';
 import { EmptyContent } from '@/shared/components/molecules';
+import rs from '@/shared/utilities/responsiveSize';
 
 const ProfileIndex = () => {
   useNavigationHeader({
@@ -21,16 +22,14 @@ const ProfileIndex = () => {
 
   const { gutters } = useTheme();
   const { profile, loading, formatDate } = useProfile();
-
   if (!profile || loading) {
     return (
-      <SafeScreen>
-        <EmptyContent
-          isLoading={loading}
-          title="No profile found"
-          description="Please try again later"
-        />
-      </SafeScreen>
+      <EmptyContent
+        isLoading={loading}
+        style={{ height: rs('wf') }}
+        title="No profile found"
+        description="Please try again later"
+      />
     );
   }
 

@@ -5,25 +5,23 @@ import { useTheme } from '@/theme';
 import layout from '@/theme/layout';
 import { IProduct } from '../../../types/product.type';
 import { RatingStars } from './RatingStars';
-
+import { staticFontStyles } from '@/theme/fonts';
 interface ProductInfoSectionProps {
   product: IProduct;
   discountedPrice: number;
 }
 
 export const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({ product, discountedPrice }) => {
-  const { colors, gutters, backgrounds } = useTheme();
+  const { gutters, backgrounds, borders } = useTheme();
 
   return (
     <View
       style={[
-        backgrounds.white,
+        backgrounds.background,
         gutters.paddingHorizontal_16,
         gutters.paddingVertical_20,
-        {
-          borderBottomWidth: 1,
-          borderBottomColor: colors.gray8,
-        },
+        borders.wBottom_1,
+        borders.gray8,
       ]}
     >
       {/* Brand and Category */}
@@ -32,14 +30,15 @@ export const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({ product,
           variant="body3"
           color="primary"
           weight="semibold"
-          style={{ textTransform: 'uppercase', letterSpacing: 0.5 }}
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={[staticFontStyles.uppercase, { letterSpacing: 0.5 }]}
         >
           {product.brand}
         </Text>
         <Text
           variant="body3"
           color="secondary"
-          style={{ textTransform: 'capitalize' }}
+          style={staticFontStyles.capitalize}
         >
           {product.category}
         </Text>

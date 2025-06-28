@@ -41,7 +41,7 @@ const ProductDetailsScreen: React.FC<ProductDetailsScreenProps> = ({ route }) =>
 
   return (
     <SafeScreen showHeader={false}>
-      <ProductDetailHeader />
+      <ProductDetailHeader product={product} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={layout.flex_1}

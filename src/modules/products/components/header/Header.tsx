@@ -1,19 +1,23 @@
 import { Pressable, View } from 'react-native';
 import React, { useCallback } from 'react';
-import { IconByVariant, Image, Text, TextInput } from '@/shared/components/atoms';
+import { Image, Text } from '@/shared/components/atoms';
 import rs from '@/shared/utilities/responsiveSize';
 import layout from '@/theme/layout';
 import { useTheme } from '@/theme';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProp } from '@/navigation/type';
 import routes from '@/navigation/routes';
+import { useAppSelector } from '@/state/hooks';
+import { selectUser } from '@/state/slices/authSlice';
 
 const Header = () => {
   const { gutters, colors } = useTheme();
   const navigation = useNavigation<NavigationProp>();
+  const user = useAppSelector(selectUser);
   const handleNavigate = useCallback(() => {
     navigation.navigate(routes.profile);
   }, [navigation]);
+  const fullName = user ? `${user?.firstName} ${user?.lastName}` : 'Guest User';
   return (
     <View style={gutters.gap_16}>
       <Pressable
@@ -22,7 +26,7 @@ const Header = () => {
         android_ripple={{ color: colors.gray8 }}
       >
         <Image
-          source={{ uri: '' }}
+          source={{ uri: user?.image }}
           style={{ width: rs(45), height: rs(45) }}
           resizeMode="contain"
           borderRadius={100}
@@ -34,13 +38,9 @@ const Header = () => {
           >
             Welcome back,{' '}
           </Text>
-          <Text weight="bold">Sohan Talukder 👋</Text>
+          <Text weight="bold">{fullName} 👋</Text>
         </View>
       </Pressable>
-      <TextInput
-        placeholder="Search Products ..."
-        leftIcon={<IconByVariant path="search" />}
-      />
     </View>
   );
 };

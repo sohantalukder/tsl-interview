@@ -34,9 +34,7 @@ const ProductsList = ({ products, loading, refreshing, handleRefresh }: Products
               product={item.leftProduct}
               onPress={handleProductPress}
             />
-          ) : (
-            <View style={styles.emptyCard} />
-          )}
+          ) : undefined}
         </View>
         <View style={styles.productContainer}>
           {item.rightProduct ? (
@@ -44,9 +42,7 @@ const ProductsList = ({ products, loading, refreshing, handleRefresh }: Products
               product={item.rightProduct}
               onPress={handleProductPress}
             />
-          ) : (
-            <View style={styles.emptyCard} />
-          )}
+          ) : undefined}
         </View>
       </View>
     ),
@@ -87,11 +83,5 @@ const styles = StyleSheet.create({
   productContainer: {
     flex: 1,
     padding: rs(8),
-  },
-  emptyCard: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: rs(16),
   },
 });

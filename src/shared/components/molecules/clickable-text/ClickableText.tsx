@@ -1,13 +1,6 @@
 import { Text } from '@/shared/components/atoms';
 import { useTheme } from '@/theme';
-import {
-  View,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-  TextProps,
-  Pressable,
-} from 'react-native';
+import { View, StyleProp, ViewStyle, TextStyle, TextProps, Pressable } from 'react-native';
 import { TextColor } from '@/shared/components/atoms/text/Text';
 import { TypographySize } from '@/theme/types/fonts';
 

@@ -1,15 +1,27 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { IconByVariant } from '@/shared/components/atoms';
 import { useTheme } from '@/theme';
 import layout from '@/theme/layout';
 import rs from '@/shared/utilities/responsiveSize';
 import { useNavigation } from '@react-navigation/native';
+import { useAppDispatch, useAppSelector } from '@/state/hooks';
+import { FavoriteItem } from '@/types/api';
+import { IProduct } from '../../../types/product.type';
+import { selectFavorites, toggleFavorite } from '@/state/slices/favoritesSlice';
+import routes from '@/navigation/routes';
+import { NavigationProp } from '@/navigation/type';
 
-export const ProductDetailHeader = () => {
-  const navigation = useNavigation();
+export const ProductDetailHeader = ({ product }: { product?: IProduct }) => {
+  const navigation = useNavigation<NavigationProp>();
   const { colors, gutters, borders, backgrounds } = useTheme();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const favorites = useAppSelector(selectFavorites);
+  const dispatch = useAppDispatch();
+  const isFavorite = useMemo(
+    () => favorites.some((favorite: FavoriteItem) => favorite.id === product?.id),
+    [favorites, product?.id]
+  );
+
   const headerButtonStyle = useMemo(
     () => [
       {
@@ -17,7 +29,7 @@ export const ProductDetailHeader = () => {
         height: rs(44),
         borderRadius: rs(22),
       },
-      backgrounds.white,
+      backgrounds.background,
       borders.rounded_80,
       layout.justifyCenter,
       layout.itemsCenter,
@@ -29,14 +41,20 @@ export const ProductDetailHeader = () => {
         elevation: 1,
       },
     ],
-    [backgrounds.white, borders.rounded_80, colors.black]
+    [backgrounds.background, borders.rounded_80, colors.black]
   );
   const handleBack = useCallback(() => {
-    navigation.goBack();
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.navigate(routes.home);
+    }
   }, [navigation]);
   const handleFavoritePress = useCallback(() => {
-    setIsFavorite(!isFavorite);
-  }, [isFavorite]);
+    if (product) {
+      dispatch(toggleFavorite(product));
+    }
+  }, [product, dispatch]);
 
   return (
     <View

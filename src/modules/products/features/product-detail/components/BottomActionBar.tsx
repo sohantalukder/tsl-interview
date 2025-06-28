@@ -40,7 +40,7 @@ export const BottomActionBar: React.FC<BottomActionBarProps> = ({ price, stock, 
         layout.bottom0,
         layout.left0,
         layout.right0,
-        backgrounds.white,
+        backgrounds.background,
         gutters.paddingHorizontal_16,
         gutters.paddingVertical_16,
         gutters.paddingBottom_32,
@@ -60,7 +60,7 @@ export const BottomActionBar: React.FC<BottomActionBarProps> = ({ price, stock, 
               height: rs(36),
             },
             borders.rounded_8,
-            backgrounds.white,
+            backgrounds.gray7,
             layout.justifyCenter,
             layout.itemsCenter,
           ]}
@@ -69,7 +69,7 @@ export const BottomActionBar: React.FC<BottomActionBarProps> = ({ price, stock, 
         >
           <IconByVariant
             path="minus"
-            color={quantity <= 1 ? colors.gray6 : colors.text}
+            color={quantity <= 1 ? colors.gray3 : colors.text}
           />
         </TouchableOpacity>
         <Text
@@ -86,7 +86,7 @@ export const BottomActionBar: React.FC<BottomActionBarProps> = ({ price, stock, 
               height: rs(36),
             },
             borders.rounded_8,
-            backgrounds.white,
+            backgrounds.gray7,
             layout.justifyCenter,
             layout.itemsCenter,
           ]}
@@ -95,7 +95,7 @@ export const BottomActionBar: React.FC<BottomActionBarProps> = ({ price, stock, 
         >
           <IconByVariant
             path="plus"
-            color={quantity >= stock ? colors.gray6 : colors.text}
+            color={quantity >= stock ? colors.gray3 : colors.text}
           />
         </TouchableOpacity>
       </View>
