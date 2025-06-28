@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TSLInterview</string>
+    <string name="google_maps_key">AIzaSyDummy_Key_For_Testing_Replace_With_Real_Key</string>
 </resources>
