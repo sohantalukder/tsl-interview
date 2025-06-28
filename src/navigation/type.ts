@@ -17,9 +17,9 @@ export type RootStackParamList = {
   [routes.bottomTab]: undefined;
 };
 
-export type RouteProps = {
-  name: string;
-  component: React.FC<RootScreenProps>;
+export type RouteProps<T extends keyof RootStackParamList = keyof RootStackParamList> = {
+  name: T;
+  component: React.FC<RootScreenProps<T>>;
   title?: string;
   options?: StackNavigationOptions;
 };

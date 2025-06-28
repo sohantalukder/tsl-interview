@@ -99,4 +99,10 @@ export default {
   right_10: {
     right: 10,
   },
+  bottom_10: {
+    bottom: 10,
+  },
+  overflowHidden: {
+    overflow: 'hidden',
+  },
 } as const satisfies Record<string, ViewStyle>;

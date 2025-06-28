@@ -1,0 +1,9 @@
+export { ProductDetailHeader } from './ProductDetailHeader';
+export { RatingStars } from './RatingStars';
+export { ReviewCard } from './ReviewCard';
+export { ProductInfoSection } from './ProductInfoSection';
+export { BottomActionBar } from './BottomActionBar';
+export { ProductImageGallery } from './ProductImageGallery';
+export { ProductDetailsSection } from './ProductDetailsSection';
+export { ProductTagsSection } from './ProductTagsSection';
+export { ProductReviewsSection } from './ProductReviewsSection';

@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, memo } from 'react';
+import React, { useMemo, useCallback, memo, useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
 import { IProduct } from '../../types/product.type';
 import { IconByVariant, Image, Text } from '@/shared/components/atoms';
@@ -9,8 +9,6 @@ import { useTheme } from '@/theme';
 interface ProductCardProps {
   product: IProduct;
   onPress: (product: IProduct) => void;
-  onToggleFavorite: (productId: number) => void;
-  isFavorite: boolean;
 }
 
 // Constants - moved outside component to prevent recreation
@@ -42,9 +40,9 @@ const getStockStatusText = (stock: number): string => {
   return stock > 0 ? `${stock} left` : 'Out of stock';
 };
 
-export const ProductCard: React.FC<ProductCardProps> = memo(({ product, onPress, onToggleFavorite, isFavorite }) => {
+export const ProductCard: React.FC<ProductCardProps> = memo(({ product, onPress }) => {
   const { colors, gutters, borders, backgrounds } = useTheme();
-
+  const [isFavorite, setIsFavorite] = useState(false);
   // Memoized calculations to prevent unnecessary recalculations
   const discountedPrice = useMemo(
     () => calculateDiscountedPrice(product.price, product.discountPercentage),
@@ -120,8 +118,8 @@ export const ProductCard: React.FC<ProductCardProps> = memo(({ product, onPress,
   }, [onPress, product]);
 
   const handleFavoritePress = useCallback(() => {
-    onToggleFavorite(product.id);
-  }, [onToggleFavorite, product.id]);
+    setIsFavorite(!isFavorite);
+  }, [isFavorite]);
 
   return (
     <Pressable
