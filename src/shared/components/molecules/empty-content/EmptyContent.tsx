@@ -6,7 +6,6 @@ import { TextColor } from '@/shared/components/atoms/text/Text';
 import { TypographySize } from '@/theme/types/fonts';
 import { useTheme } from '@/theme';
 import { staticFontStyles } from '@/theme/fonts';
-import rs from '@/shared/utilities/responsiveSize';
 
 /**
  * Properties for the EmptyContent component
@@ -91,9 +90,7 @@ const EmptyContent: React.FC<Properties> = ({
       </>
     );
   };
-  return (
-    <View style={[layout.itemsCenter, { height: rs('hf') / 2 }, layout.justifyCenter, style]}>{renderContent()}</View>
-  );
+  return <View style={[layout.itemsCenter, layout.flex_1, layout.justifyCenter, style]}>{renderContent()}</View>;
 };
 
 export default EmptyContent;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, ActivityIndicator } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { Text } from '@/shared/components/atoms';
 import { SafeScreen } from '@/shared/components/templates';
 import { useTheme } from '@/theme';
@@ -22,36 +22,16 @@ type ProductDetailsScreenProps = RootScreenProps<typeof routes.productDetail>;
 
 export const ProductDetailsScreen: React.FC<ProductDetailsScreenProps> = ({ route }) => {
   const { id } = route.params;
-  const { colors, gutters } = useTheme();
+  const { gutters } = useTheme();
 
   const { product, loading, discountedPrice } = useProductDetail({ productId: id });
 
-  if (loading) {
+  if (!product || loading) {
     return (
       <SafeScreen showHeader={false}>
         <ProductDetailHeader />
-        <View style={[layout.flex_1, layout.justifyCenter, layout.itemsCenter]}>
-          <ActivityIndicator
-            size="large"
-            color={colors.primary}
-          />
-          <Text
-            variant="body1"
-            weight="semibold"
-            style={gutters.marginTop_16}
-          >
-            Loading product details...
-          </Text>
-        </View>
-      </SafeScreen>
-    );
-  }
-
-  if (!product) {
-    return (
-      <SafeScreen>
-        <ProductDetailHeader />
         <EmptyContent
+          isLoading={loading}
           title="Product not found"
           description="Please try again later."
         />

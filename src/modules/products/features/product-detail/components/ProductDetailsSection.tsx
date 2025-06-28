@@ -10,7 +10,7 @@ interface ProductDetailsSectionProps {
 }
 
 export const ProductDetailsSection: React.FC<ProductDetailsSectionProps> = ({ product }) => {
-  const { colors, gutters } = useTheme();
+  const { gutters, borders } = useTheme();
 
   const details = [
     { label: 'SKU', value: product.sku },
@@ -47,10 +47,8 @@ export const ProductDetailsSection: React.FC<ProductDetailsSectionProps> = ({ pr
             layout.justifyBetween,
             layout.itemsStart,
             gutters.paddingVertical_8,
-            {
-              borderBottomWidth: 1,
-              borderBottomColor: colors.gray8,
-            },
+            borders.wBottom_1,
+            borders.gray8,
           ]}
         >
           <Text
@@ -65,6 +63,7 @@ export const ProductDetailsSection: React.FC<ProductDetailsSectionProps> = ({ pr
             variant="body2"
             color={(detail.color as any) || 'default'}
             weight="regular"
+            // eslint-disable-next-line react-native/no-inline-styles
             style={[{ flex: 2, textAlign: 'right' }]}
           >
             {detail.value}

@@ -8,11 +8,12 @@ import { EmptyContent } from '@/shared/components/molecules';
 import layout from '@/theme/layout';
 import { useTheme } from '@/theme';
 import useProducts from './hooks/useProducts';
+import { IProduct } from './types/product.type';
 
 interface IProductRow {
   id: string;
-  leftProduct: any | null;
-  rightProduct: any | null;
+  leftProduct: IProduct | null;
+  rightProduct: IProduct | null;
 }
 
 const Separator = () => <View style={{ height: rs(16) }} />;
