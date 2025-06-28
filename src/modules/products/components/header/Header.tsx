@@ -1,15 +1,26 @@
 import { Pressable, View } from 'react-native';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { IconByVariant, Image, Text, TextInput } from '@/shared/components/atoms';
 import rs from '@/shared/utilities/responsiveSize';
 import layout from '@/theme/layout';
 import { useTheme } from '@/theme';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProp } from '@/navigation/type';
+import routes from '@/navigation/routes';
 
 const Header = () => {
-  const { gutters } = useTheme();
+  const { gutters, colors } = useTheme();
+  const navigation = useNavigation<NavigationProp>();
+  const handleNavigate = useCallback(() => {
+    navigation.navigate(routes.profile);
+  }, [navigation]);
   return (
     <View style={gutters.gap_16}>
-      <Pressable style={[layout.row, layout.itemsCenter, gutters.gap_10]}>
+      <Pressable
+        style={[layout.row, layout.itemsCenter, gutters.gap_10]}
+        onPress={handleNavigate}
+        android_ripple={{ color: colors.gray8 }}
+      >
         <Image
           source={{ uri: '' }}
           style={{ width: rs(45), height: rs(45) }}

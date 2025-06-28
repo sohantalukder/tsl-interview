@@ -124,7 +124,7 @@ export const BottomActionBar: React.FC<BottomActionBarProps> = ({ price, stock, 
             variant="body1"
             weight="semibold"
             color="white"
-            style={{ textAlign: 'center' }}
+            style={staticFontStyles.alignCenter}
           >
             {stock === 0 ? 'Out of Stock' : 'Add to Cart'}
           </Text>
