@@ -1,6 +1,5 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useMemo } from 'react';
+import { useGetProductQuery } from '@/state/api/productsApi';
 import { IProduct } from '../../../types/product.type';
 
 interface UseProductDetailProps {
@@ -11,48 +10,35 @@ interface UseProductDetailReturn {
   product: IProduct | null;
   loading: boolean;
   discountedPrice: number;
-  fetchProduct: () => Promise<void>;
+  fetchProduct: () => void;
+  error: string | undefined;
 }
 
 const useProductDetail = ({ productId }: UseProductDetailProps): UseProductDetailReturn => {
-  const navigation = useNavigation();
-  const [product, setProduct] = useState<IProduct | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  const fetchProduct = useCallback(async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(`https://dummyjson.com/products/${productId}`);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const productData: IProduct = await response.json();
-      setProduct(productData);
-    } catch (error) {
-      Alert.alert('Error', 'Failed to fetch product details. Please try again.');
-      console.error('Error fetching product:', error);
-      navigation.goBack();
-    } finally {
-      setLoading(false);
-    }
-  }, [productId, navigation]);
+  const {
+    data: product,
+    isLoading: loading,
+    error,
+    refetch,
+  } = useGetProductQuery(productId, {
+    skip: !productId, // Skip query if no productId
+  });
 
   const discountedPrice = useMemo(() => {
     if (!product) return 0;
     return product.price * (1 - product.discountPercentage / 100);
   }, [product]);
 
-  useEffect(() => {
-    fetchProduct();
-  }, [fetchProduct]);
+  const fetchProduct = () => {
+    refetch();
+  };
 
   return {
-    product,
+    product: product || null,
     loading,
     discountedPrice,
     fetchProduct,
+    error: error ? 'Failed to fetch product details' : undefined,
   };
 };
 

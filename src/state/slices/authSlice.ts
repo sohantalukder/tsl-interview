@@ -32,9 +32,9 @@ export const authSlice = createSlice({
     },
 
     loginSuccess: (state, action: PayloadAction<AuthResponse>) => {
-      const { token, refreshToken, ...userData } = action.payload;
+      const { accessToken, refreshToken, ...userData } = action.payload;
       state.user = userData as IUser;
-      state.token = token;
+      state.token = accessToken;
       state.refreshToken = refreshToken;
       state.isAuthenticated = true;
       state.isLoading = false;
@@ -55,9 +55,7 @@ export const authSlice = createSlice({
     },
 
     updateUser: (state, action: PayloadAction<Partial<IUser>>) => {
-      if (state.user) {
-        state.user = { ...state.user, ...action.payload };
-      }
+      state.user = { ...state.user, ...action.payload } as IUser;
     },
 
     updateTokens: (state, action: PayloadAction<{ token: string; refreshToken?: string }>) => {

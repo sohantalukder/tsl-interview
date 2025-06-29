@@ -4,6 +4,7 @@ import { baseApi } from './api/baseApi';
 import authReducer from './slices/authSlice';
 import productsReducer from './slices/productsSlice';
 import favoritesReducer from './slices/favoritesSlice';
+import Config from 'react-native-config';
 
 export const store = configureStore({
   reducer: {
@@ -28,7 +29,7 @@ export const store = configureStore({
     }).concat(baseApi.middleware),
 
   // Enable Redux DevTools in development
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: Config.NODE_ENV !== 'production',
 });
 
 // Setup RTK Query listeners for automatic refetching

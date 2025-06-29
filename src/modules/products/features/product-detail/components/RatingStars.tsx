@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { IconByVariant } from '@/shared/components/atoms';
 import { useTheme } from '@/theme';
 import layout from '@/theme/layout';
+import rs from '@/shared/utilities/responsiveSize';
 
 interface RatingStarsProps {
   rating: number;
@@ -60,5 +61,5 @@ export const RatingStars: React.FC<RatingStarsProps> = ({ rating, size = 16 }) =
     return starArray;
   }, [rating, colors.warning, colors.gray6, size]);
 
-  return <View style={[layout.row, { gap: 2 }]}>{stars}</View>;
+  return <View style={[layout.row, { gap: rs(2) }]}>{stars}</View>;
 };

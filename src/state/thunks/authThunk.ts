@@ -26,7 +26,7 @@ export const loginWithCredentials = createAsyncThunk(
 
       if (result.data) {
         dispatch(fetchUserProfile());
-        localStore.setApiToken(result.data.token);
+        localStore.setApiToken(result.data.accessToken?.toString() || '');
         return result.data;
       } else {
         const errorMessage = getErrorMessage(result.error, 'Login failed');
@@ -59,7 +59,7 @@ export const refreshAuthToken = createAsyncThunk(
 
       if (result.data) {
         dispatch(loginSuccess(result.data));
-        localStore.setApiToken(result.data.token);
+        localStore.setApiToken(result.data.accessToken?.toString() || '');
         return result.data;
       } else {
         const errorMessage = getErrorMessage(result.error, 'Token refresh failed');

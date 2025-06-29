@@ -16,6 +16,7 @@ const useSplash = () => {
 
   const hasNavigated = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const apiCallInProgress = useRef(false);
 
   const isAuthLoading = useAppSelector(selectAuthLoading);
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -46,7 +47,8 @@ const useSplash = () => {
   );
 
   const checkAuthAndNavigate = useCallback(async () => {
-    if (isAuthLoading || hasNavigated.current) return;
+    // Prevent multiple executions
+    if (hasNavigated.current || apiCallInProgress.current) return;
 
     const apiToken = localStore.getApiToken();
 
@@ -65,20 +67,28 @@ const useSplash = () => {
 
     // Already authenticated case
     if (isAuthenticated) {
-      navigateWithDelay(routes.home);
+      navigateWithDelay(routes.bottomTab);
       return;
     }
 
-    // Validate token case
+    // If auth is loading from another source, wait for it to complete
+    if (isAuthLoading) {
+      return;
+    }
+
+    // Validate token case - only if no API call is in progress
     try {
+      apiCallInProgress.current = true;
       await dispatch(fetchUserProfile()).unwrap();
-      navigateWithDelay(routes.home);
+      navigateWithDelay(routes.bottomTab);
     } catch (error) {
       console.warn('Token validation failed:', error);
       localStore.clearApiToken();
       navigateWithDelay(routes.login);
+    } finally {
+      apiCallInProgress.current = false;
     }
-  }, [dispatch, navigateWithDelay, isAuthLoading, isAuthenticated, authError]);
+  }, [dispatch, navigateWithDelay, authError, isAuthenticated, isAuthLoading]);
 
   useEffect(() => {
     checkAuthAndNavigate();

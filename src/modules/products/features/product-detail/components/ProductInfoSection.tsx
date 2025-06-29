@@ -86,7 +86,7 @@ export const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({ product,
           <Text
             variant="body1"
             color="secondary"
-            style={[gutters.marginLeft_12, { textDecorationLine: 'line-through' }]}
+            style={[gutters.marginLeft_12, { textDecorationLine: `line-through` }]}
           >
             ${product.price.toFixed(2)}
           </Text>

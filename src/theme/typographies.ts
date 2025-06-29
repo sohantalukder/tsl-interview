@@ -28,7 +28,6 @@ export const typographies = (colors: FontColors) =>
       lineHeight: lineHeight(18, 120),
       textAlign: 'left',
     },
-    // eslint-disable-next-line react-native/sort-styles
     body1: {
       color: colors.text.color,
       fontSize: generateFontSizes().size_16.fontSize,

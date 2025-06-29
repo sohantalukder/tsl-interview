@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Alert } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@/state/hooks';
 import { loadProducts, loadMoreProducts } from '@/state/thunks/productsThunk';
@@ -36,6 +36,7 @@ const useProducts = (): UseProductsReturn => {
   const reduxProducts = useAppSelector(selectProducts);
   const loading = useAppSelector(selectProductsLoading);
   const hasMore = useAppSelector(selectHasMore);
+  const alreadyCall = useRef(false);
   const isLoadingMore = useAppSelector(selectProductsLoadingMore);
 
   // Convert Redux products to your existing format
@@ -85,8 +86,9 @@ const useProducts = (): UseProductsReturn => {
   }, [filteredProducts]);
 
   useEffect(() => {
-    if (filteredProducts.length === 0 && !loading) {
+    if (filteredProducts.length === 0 && !loading && !alreadyCall.current) {
       fetchProducts();
+      alreadyCall.current = true;
     }
   }, [fetchProducts, filteredProducts.length, loading]);
 

@@ -35,13 +35,7 @@ type Properties = {
   bgColor?: string;
 };
 
-const Switch: React.FC<Properties> = ({
-  value = false,
-  activeColor,
-  onPress = () => {},
-  name,
-  bgColor,
-}) => {
+const Switch: React.FC<Properties> = ({ value = false, activeColor, onPress = () => {}, name, bgColor }) => {
   const valueRef = useRef(false);
   const { colors } = useTheme();
   const [show, setShow] = useState<boolean>(value);
@@ -50,6 +44,7 @@ const Switch: React.FC<Properties> = ({
   useEffect(() => {
     value ? handleSwitch(true) : handleSwitch(false);
     setShow(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   const handleSwitch = (flag = false) => {
@@ -70,10 +65,7 @@ const Switch: React.FC<Properties> = ({
   });
   const borderColor = translateRef.interpolate({
     inputRange: [0, 18],
-    outputRange: [
-      withOpacity(colors.gray6, 0.85),
-      activeColor ?? colors.primary,
-    ],
+    outputRange: [withOpacity(colors.gray6, 0.85), activeColor ?? colors.primary],
     extrapolate: 'clamp',
   });
   const circleBG = translateRef.interpolate({
@@ -105,12 +97,7 @@ const Switch: React.FC<Properties> = ({
         height: config.height,
       }}
     >
-      <Animated.View
-        style={[
-          styles.containerStyle,
-          { backgroundColor, paddingHorizontal, borderColor },
-        ]}
-      >
+      <Animated.View style={[styles.containerStyle, { backgroundColor, paddingHorizontal, borderColor }]}>
         <Animated.View
           style={[
             styles.circleStyle,

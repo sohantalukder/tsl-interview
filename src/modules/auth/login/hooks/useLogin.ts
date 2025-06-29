@@ -27,8 +27,8 @@ const useLogin = () => {
         if (result) {
           if (rememberMe.current) {
             localStore.setUserCredential({
-              username: credentials.username,
-              password: credentials.password,
+              username: credentials.username.trim(),
+              password: credentials.password.trim(),
             });
           }
           navigation.reset({

@@ -1,5 +1,7 @@
+import Config from 'react-native-config';
+
 export const API_CONFIG = {
-  BASE_URL: 'https://dummyjson.com',
+  BASE_URL: Config.API_URL,
   ENDPOINTS: {
     // Auth endpoints
     AUTH: {
